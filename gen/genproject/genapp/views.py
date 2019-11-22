@@ -148,8 +148,11 @@ def index(request):
 
     point = random.randint(0,4)
 
-    res_list = {'0':'タンピン系', '1':'一色系', '2':'メンゼン系', '3':'鳴き系', '4':'対子暗刻系', '5':'無理系'}
+    result = {
+        'res':str(resignation), 
+        'point':str(point)
+    }
 
-    result = 'アガリ系 『' + res_list[str(resignation)] + '』  ポイント ' + str(point) + '番目'
-
-    return HttpResponse(result)
+    return JsonResponse(
+        result
+    )
