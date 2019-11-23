@@ -44,7 +44,7 @@ def index(request):
     #配牌リスト
     pai_list = [0 for i in range(37)]
     for i in datas["haipai"]:
-        pai_list[syurui[i["name"]]] += i["amount"]
+        pai_list[syurui[i["hai"]]] += i["amount"]
 
     input_list = pai_list
 
@@ -54,18 +54,18 @@ def index(request):
     pin = ''
     honors = ''
     for i in datas["haipai"]:
-        if 'm' in i["name"]:
+        if 'm' in i["hai"]:
             for j in range(i["amount"]):
-                man += str(dic_man[i["name"]])
-        elif 's' in i["name"]:
+                man += str(dic_man[i["hai"]])
+        elif 's' in i["hai"]:
             for j in range(i["amount"]):
-                sou += str(dic_sou[i["name"]])
-        elif 'p' in i["name"]:
+                sou += str(dic_sou[i["hai"]])
+        elif 'p' in i["hai"]:
             for j in range(i["amount"]):
-                pin += str(dic_pin[i["name"]])
+                pin += str(dic_pin[i["hai"]])
         else:
             for j in range(i["amount"]):
-                honors += str(dic_honors[i["name"]])
+                honors += str(dic_honors[i["hai"]])
     shanten = Shanten()
     tiles = TilesConverter.string_to_34_array(man=man, pin=pin, sou=sou, honors=honors)
     ss = shanten.calculate_shanten(tiles)
@@ -80,26 +80,26 @@ def index(request):
     yao = 0
     for i in datas["haipai"]:
         #ドラ枚数
-        if i["name"] == dora or i["name"] == 'a5m' or i["name"] == 'a5s' or i["name"] == 'a5p':
+        if i["hai"] == dora or i["hai"] == 'a5m' or i["hai"] == 'a5s' or i["hai"] == 'a5p':
             dd += i["amount"]
         #萬子枚数
-        if 'm' in i["name"]:
+        if 'm' in i["hai"]:
             m += i["amount"]
         #索子枚数
-        elif 's' in i["name"]:
+        elif 's' in i["hai"]:
             s += i["amount"]
         #筒子枚数
-        elif 'p' in i["name"]:
+        elif 'p' in i["hai"]:
             p += i["amount"]
         #字牌枚数
         else:
             h += i["amount"]
         #么九牌
-        if '1' in i["name"] or '9' in i["name"] or 'a' in i["name"] or 'b' in i["name"] or 'c' in i["name"] or 'd' in i["name"] or 'e' in i["name"] or 'f' in i["name"] or 'g' in i["name"]:
+        if '1' in i["hai"] or '9' in i["hai"] or 'a' in i["hai"] or 'b' in i["hai"] or 'c' in i["hai"] or 'd' in i["hai"] or 'e' in i["hai"] or 'f' in i["hai"] or 'g' in i["hai"]:
             yao += i["amount"]
         else:
             tyu += i["amount"]
-    
+
     input_list.append(dd)
     input_list.append(ss)
     input_list.append(m)
@@ -146,13 +146,14 @@ def index(request):
 
     resignation = np.argmax(y[0,:].array)
 
-    point = random.randint(0,4)
+    point = random.randint(1,5)
 
     result = {
-        'res':str(resignation), 
+        'res':str(resignation),
         'point':str(point)
     }
 
-    return JsonResponse(
+    response = JsonResponse(
         result
     )
+    return response
