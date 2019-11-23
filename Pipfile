@@ -7,18 +7,12 @@ verify_ssl = true
 
 [packages]
 numpy = "*"
-pandas = "*"
-matplotlib = "*"
 django = "*"
 mahjong = "*"
 chainer = "*"
 sklearn = "*"
-opencv-python = "*"
 pillow = "*"
 pyqt5 = "*"
-tqdm = "*"
-cupy = "*"
-ideep = "*"
 django-cors-headers = "*"
 
 [requires]
