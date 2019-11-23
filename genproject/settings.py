@@ -123,7 +123,7 @@ STATIC_URL = '/static/'
 
 # 許可するオリジン
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8080',
+    'https://gen-mahjong.firebaseapp.com',
 )
 
 # レスポンスを公開する
