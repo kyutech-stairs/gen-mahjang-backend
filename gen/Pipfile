@@ -19,6 +19,7 @@ pyqt5 = "*"
 tqdm = "*"
 cupy = "*"
 ideep = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.7"
